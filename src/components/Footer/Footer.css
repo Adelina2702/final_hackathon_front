@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Nanum+Gothic&display=swap");
+
+.coMainFtr {
+  font-family: "Patua One", cursive;
+  font-weight: 700;
+  background: #131e29;
+  color: #f25e09;
+  height: auto;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.bireki {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.number {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.mainFtr h5 {
+  font-family: "Patua One", cursive;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.mainFtr a {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 100;
+  text-decoration: none;
+  color: #f25e09;
+  /* margin-right: 10px; */
+}
+
+.iconsimg a {
+  margin-top: 50px;
+}
+
+.fourth {
+  color: rgb(192, 192, 192);
+  font-size: 14px;
+}
+
+.inpu {
+  width: 250px;
+}
+
+@media screen and (max-width: 769px) {
+  .coMainFtr {
+    height: auto;
+  }
+
+  .mainFtr h5 {
+    font-size: 15px;
+  }
+
+  .mainFtr a {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .mainFtr h5 {
+    font-size: 10px;
+  }
+
+  .mainFtr a {
+    display: flex;
+    font-size: 10px;
+    margin: 6px;
+    margin-bottom: 4px;
+  }
+
+  .bireki {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: flex-start; */
+    text-align: start;
+  }
+
+  .number {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 15px;
+  }
+
+  .fourth {
+    font-size: 11px;
+  }
+
+  .form-label {
+    font-size: 11px;
+    margin-bottom: 0.5rem;
+  }
+
+  .right-side {
+    display: none;
+  }
+}

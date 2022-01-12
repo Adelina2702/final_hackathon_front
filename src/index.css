@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #00bbb4;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.photo {
+  width: 100%;
+}
+
+.add-page,
+.edit-page {
+  background-color: #bc9e5e;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-page form,
+.edit-page form {
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.add-page form input,
+.edit-page form input {
+  color: rgb(0, 0, 0);
+  margin: 5px;
+}
+
+.add-page form button,
+.edit-page form button {
+  margin-top: 15px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.bodyy {
+  background: #bc9e5e;
+}
+
+.sidebar {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.products2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+img {
+  width: 200px;
+}
+
+.detail-image {
+  display: flex;
+  justify-content: center;
+  height: 400px;
+}
+
+.detail-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 15 0vh;
+  align-content: center;
+}
+
+.detail-image img {
+  width: 90%;
+  object-fit: contain;
+  padding-top: 10px;
+}
