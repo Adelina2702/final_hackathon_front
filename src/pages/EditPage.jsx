@@ -1,115 +1,133 @@
-// import React, { useContext, useEffect } from "react";
-// import * as yup from "yup";
-// import { useParams } from "react-router";
-// import { useNavigate } from "react-router-dom";
-// import { productContext } from "../context/ProductContext";
+import React, { useContext, useEffect } from "react";
+import * as yup from "yup";
+import { Formik } from "formik";
+import { Form, Button } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router";
+import { productContext } from "../context/ProductContext";
 
-// const EditPage = () => {
+const EditPage = () => {
+  const { saveEditedProducts, getProductsToEdit, productToEdit } =
+    useContext(productContext);
+  const params = useParams();
+  useEffect(() => {
+    getProductsToEdit(params.id);
+  }, []);
+  const schema = yup.object().shape({
+    name: yup.string().min(2).max(30).required("Required"),
+    price: yup.string().min(3).max(255).required("Required"),
+    category: yup.string().required("Required"),
+    type: yup.string().required("Required"),
+    img: yup.string().required("Required"),
+  });
+  const navigate = useNavigate();
+  return (
+    <div>
+      <h2>Редактирование</h2>
+      {productToEdit ? (
+        <Formik
+          validationSchema={schema}
+          onSubmit={(data, { resetForm }) => {
+            console.log(data);
+            saveEditedProducts(data);
+            navigate(-1);
+          }}
+          initialValues={productToEdit}
+        >
+          {({ handleSubmit, handleChange, values, touched, errors }) => (
+            <Form
+              style={{ width: "90%", margin: "0 auto" }}
+              className="bg-light p-4"
+              onSubmit={handleSubmit}
+            >
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Название товара</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Введите название товара"
+                  name="name"
+                  onChange={handleChange}
+                  isValid={!errors.name && touched.name}
+                  isInvalid={!!errors.name}
+                  value={values.name}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.name}
+                </Form.Control.Feedback>
+              </Form.Group>
 
- 
-//   return (
-//     <>
-//     <div
-//     style={{textAlign: "center", fontFamily: "'Patua One', cursive"}}
-//     >
-//       <h3>Изменить продукт</h3>
-//     </div>
-//   <div style={{
-//       display: "flex",
-//       justifyContent: "center",
-//       width: "100%"
-//   }}>
-//     <div
-//     >
-//         <input
-//          style={{display: "flex", textAlign: "center",
-//          justifyContent: "center",
-//          minWidth: "100%",
-//          margin: "10px 10px 0px 0px",
-//          padding: "8px",
-//          fontFamily: "'Patua One', cursive"}}
-//       type="text"
-//           name="img"
-//           placeholder="Изображение"
-//           onChange={handleChange}
-//           value={inputs.img}    
-//         />
-//       <input
-//        style={{display: "flex", textAlign: "center",
-//        justifyContent: "center",
-//        minWidth: "100%",
-//        margin: "10px 10px 0px 0px",
-//        padding: "8px",
-//        fontFamily: "'Patua One', cursive"}}
-//         type="text"
-//         name="name"
-//         placeholder="Название"
-//         onChange={handleChange}
-//         value={inputs.name}
-//       />
-//       <input
-//        style={{display: "flex", textAlign: "center",
-//        justifyContent: "center",
-//        minWidth: "100%",
-//        margin: "10px 10px 0px 0px",
-//        padding: "8px",
-//        fontFamily: "'Patua One', cursive"}}
-//         type="text"
-//         name="category"
-//         placeholder="Категория"
-//         onChange={handleChange}
-//         value={inputs.category}
-//         id=""
-//       //   value={typeValue}
-//       //   onChange={(e) => filterProducts("category", e.target.value)}
-//       />
+              <Form.Group className="mb-3" controlId="formBasicEmail2">
+                <Form.Label>Цена товара</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Введите цену товара"
+                  name="price"
+                  onChange={handleChange}
+                  isValid={!errors.price && touched.price}
+                  isInvalid={!!errors.price}
+                  value={values.price}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.price}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-//       <input
-//        style={{display: "flex", textAlign: "center",
-//        justifyContent: "center",
-//        minWidth: "100%",
-//        margin: "10px 10px 0px 0px",
-//        padding: "8px",
-//        fontFamily: "'Patua One', cursive"}}
-//         type="text"
-//         name="composition"
-//         placeholder="Состав"
-//         onChange={handleChange}
-//         value={inputs.composition}
-//       />
+              <Form.Group className="mb-3" controlId="formBasicEmail1">
+                <Form.Label>Категория товара</Form.Label>
+                <Form.Select
+                  aria-label="Default select example"
+                  name="category"
+                  onChange={handleChange}
+                  isValid={!errors.category && touched.category}
+                  isInvalid={!!errors.category}
+                  value={values.category}
+                >
+                  <option>Выберите категорию</option>
+                  <option value="Салат">Салат</option>
+                  <option value="Обед">Обед</option>
+                  <option value="Ужин">Ужин</option>
+                  <option value="Десерт">Десерт</option>
+                </Form.Select>
 
-//           <input
-//            style={{display: "flex", textAlign: "center",
-//            justifyContent: "center",
-//            minWidth: "100%",
-//            margin: "10px 10px 0px 0px",
-//            padding: "8px",
-//           //  fontFamily: "'Patua One', cursive"
-//           }}
-//             type="number"
-//             name="price"
-//             placeholder="Цена"
-//             onChange={handleChange}
-//             value={inputs.price}
-//           />
+                <Form.Control.Feedback type="invalid">
+                  {errors.category}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-//       <button
-//       style={{
-//       width: "100%",
-//       border: "none",
-//       padding: "12px 20px",
-//       backgroundColor: "#00BBB4",
-//       color: "white",
-//       cursor: "pointer",
-//       textAlign: "center",
-//       marginTop: "10px",
-//       fontFamily: "'Patua One', cursive"
-//       }}
-//       onClick={handleClick}>Сохранить</button>
-//       </div>
-//       </div>
-//    </>
-//   );
-// };
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Фото товара</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Введите фото"
+                  name="image"
+                  onChange={handleChange}
+                  isValid={!errors.img && touched.img}
+                  isInvalid={!!errors.img}
+                  value={values.img}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.img}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-// export default EditPage;
+              <Button
+                style={{
+                  border: "none",
+                  marginLeft: "0",
+                  backgroundColor: "#1C374C",
+                }}
+                variant="primary"
+                type="submit"
+              >
+                Сохранить изменения
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      ) : (
+        <h2>Loading...</h2>
+      )}
+    </div>
+  );
+};
+
+export default EditPage;

@@ -156,6 +156,7 @@ export default function NavBar() {
     </Menu>
   );
   const user = JSON.parse(localStorage.getItem("token"));
+
   // ! RETURN
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -228,7 +229,6 @@ export default function NavBar() {
               }}
               placeholder="Поиск…"
               inputProps={{ "aria-label": "search" }}
-              // value={search}
               onChange={(e) => filterProducts("q", e.target.value)}
             />
           </Search>

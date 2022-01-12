@@ -25,7 +25,7 @@ export default function MyRoutes() {
       <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/admin' element={<AdminPage/>}/>
-      <Route path='/edit:id' element={<EditPage/>}/>
+      <Route path='/edit/:id' element={<EditPage/>}/>
       <Route path='/register' element={<SignUpModalPage/>}/>
       <Route path='/login' element={<LoginModalPage/>}/>
       <Route path='/add' element={<AddPage1/>}/>

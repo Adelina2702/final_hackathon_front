@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -6,16 +7,19 @@ import {
   RadioGroup,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import MediaCard from "../components/MediaCard";
 import Pagination from "../components/Pagination";
 import { productContext } from "../context/ProductContext";
+import { userContext } from "../context/UserContext";
 
 const HomePage = () => {
   const { getProducts, product } = useContext(productContext);
   const navigate = useNavigate();
   const [brandValue, setBrandValue] = useState("");
+  let user = JSON.parse(localStorage.getItem("user"));
+  let adminButton;
 
   let object = new URLSearchParams(window.location.search);
   function filterProducts(key, value) {
@@ -34,6 +38,8 @@ const HomePage = () => {
     getProducts();
   }, []);
 
+  console.log(user);
+
   return (
     <>
       <img
@@ -41,6 +47,16 @@ const HomePage = () => {
         src="https://punchbowlsocial.com/wp-content/uploads/2019/10/PBS_composite_MIN_PROD.png"
         alt="photo"
       />
+
+      {user && user.role === "ADMIN" ? (
+        <Link to="/add">
+          <Button style={{ backgroundColor: "white", textDecoration: "none" }}>
+            добавить продукт
+          </Button>
+        </Link>
+      ) : (
+        ""
+      )}
 
       <div className="home-page">
         <div className="sidebar">
@@ -109,6 +125,7 @@ const HomePage = () => {
       <div>
         <Pagination />
       </div>
+
       <img
         className="photo"
         src="https://punchbowlsocial.com/wp-content/uploads/2020/02/Home_Carousel_1-2.png"

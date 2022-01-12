@@ -37,7 +37,9 @@ const CommentContextProvider = (props) => {
                 productId,
                 owner
             };
-            const response = await $axios.post('comment/create', comment);
+
+            console.log("response")
+            await $axios.post('comment/create', comment);
             getCommentsForRoom(productId);
         } catch (e) {
             console.log(e);

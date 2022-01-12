@@ -7,7 +7,7 @@ export const productContext = React.createContext()
 const INIT_STATE ={
     product: [], 
     productDetails: null,
-    productToEdit: null,
+    productToEdit: [],
     countOfProducts: 0,
 }
 
@@ -138,6 +138,8 @@ const ProductContextProvider = (props) => {
             console.log(e);
         }
     };
+
+  
 
     return (
         <productContext.Provider

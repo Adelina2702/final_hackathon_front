@@ -27,7 +27,7 @@ const Comment = () => {
     // } else {
     //     tempUserName = user.username;
     // }
-    addComments(comment, user.id, params.id, user.username);
+    addComments(comment, user.id, params.id, user.email);
     setComment("");
   }
   const [bool, setBool] = useState(false);

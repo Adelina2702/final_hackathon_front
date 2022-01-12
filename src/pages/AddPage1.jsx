@@ -235,6 +235,7 @@ const AddPage1 = () => {
                       }}
                       onClick={() => {
                         navigate(`/edit/${product.id}`);
+                        // getProducts();
                       }}
                     >
                       Изменить

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-
+import jwt_decode from "jwt-decode"
 // import { APIusers } from "../const/config";
 import axios from "axios";
 import $axios from "../axios";
@@ -47,6 +47,8 @@ const UserContextProvider = (props) => {
         type: "LOG_SUCCESS",
         payload: true,
       });
+      const user = jwt_decode(data.accessToken);
+      localStorage.setItem('user', JSON.stringify(user))
     } catch (e) {
       dispatch({
         type: "LOG_SUCCESS",
@@ -82,7 +84,8 @@ const UserContextProvider = (props) => {
         type: "LOG_SUCCESS",
         payload: true,
       });
-      localStorage.setItem("user", JSON.stringify({ email, password }));
+      const user = jwt_decode(data.accessToken);
+            localStorage.setItem('user', JSON.stringify(user))
     } catch (error) {
       dispatch({
         type: "LOG_SUCCESS",
@@ -113,6 +116,8 @@ const UserContextProvider = (props) => {
     }
   };
 
+  let adminEmail = 'admin@gmail.com';
+
   const getUser = async (id) => {
     try {
         const user = await $axios.get('user/' + id)
@@ -132,6 +137,7 @@ const UserContextProvider = (props) => {
         signUpUser,
         loginUser,
         getUser,
+        adminEmail,
         user: state.user,
         logSuccess: state.logSuccess,
         errorMSG: state.errorMSG,
